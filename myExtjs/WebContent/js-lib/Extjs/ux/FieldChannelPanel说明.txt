@@ -1,0 +1,33 @@
+1    新建 
+		引入文件 js文件 ：
+							<script type="text/javascript" src="js-lib/ext4/ux/FieldChannelPanel.js"></script>
+		树形没有图标配置css：
+								<style type="text/css">
+									.mask {
+										display:none
+									}
+								   
+								</style>
+								
+		创建
+					1）	var ee =Ext.create('uxFC',{
+							 border:0,
+							 renderTo:"test",
+							 id:'my'
+						 });
+						 
+					2）	var ee =Ext.create('Ext.ux.FieldChannelPanel',{
+						 border:0,
+						 renderTo:"test",
+						 id:'my'
+					 });
+					 
+		获取选中的值    var c =Ext.getCmp('my').getSelectValue();     得到结果   {flag: "Channel", ids: Array[1,3]}   
+																				falg 值为 Channel 或 Field 
+																				ids  值为选中的 数组   
+																		flag 为 Channel 时  ids直接就是 idcustomer-channelid  
+																			 为 Field   为 领域id 需要后台转成频道id
+																			 necFieldService.findChannelid(field)
+																					
+		 
+		 

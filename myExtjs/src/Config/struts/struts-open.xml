@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<include file="config/struts/struts-basic.xml"></include>
+
+	<!-- 此包下不用 filter 验证 -->
+	<package name="open" namespace="/open" extends="struts-default">
+		
+		<action name="visitorTracking_*" class="visitorTrackingAction" method="{1}">
+		</action>
+		
+		<!-- 报告稿件 -->
+		<action name="reportContent_*" class="reportContentAction" method="{1}">
+		</action>
+		<action name="showReportContent" class="reportContentAction" method="showReportContent">
+			<result>/page/open/report/reportContent.jsp</result>
+		</action>
+		
+	</package>
+</struts>
