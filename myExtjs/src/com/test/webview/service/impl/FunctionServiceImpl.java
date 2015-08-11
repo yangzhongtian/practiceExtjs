@@ -27,5 +27,20 @@ public class FunctionServiceImpl extends BasicServiceSupportImpl implements IFun
 		List<FunctionsM> list =(List<FunctionsM>) basicDao.findForList("setting.function.getTree",parentId );
 		return list;
 	}
+	
+	
+	//删除功能
+	public boolean delete(String ids) {
+		try {
+			FunctionsM functionsM = new FunctionsM();
+			functionsM.setIds(ids);
+			 basicDao.delete("setting.function.delete",functionsM);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true ;
+	}
  
 }

@@ -32,9 +32,12 @@ Ext.onReady(function(){
 		autoLoad:true
 	})
 	
+	var sm = Ext.create('Ext.selection.CheckboxModel');
+	
 	var  grid = Ext.create("Ext.grid.Panel",{
 		title:'功能列表',
 		store:gridStore,
+		selModel:sm,
 		width:550,
 		tbar:[{
 			text:'添加',
@@ -43,9 +46,37 @@ Ext.onReady(function(){
 				
 			}
 		},{
-			text:'修改'
+			text:'修改',
+			handler:function(){
+				window.show();
+			}
 		},{
-			text:'删除'
+			text:'删除',
+			handler:function(){
+			var a =grid.getSelectionModel( ).getSelection(); 
+			var ids = [];
+			for(var i =0;i<a.length;i++){
+				var id = a[i].data.id;
+				ids.push(id);
+			}
+			var idss = ids.join();
+			console.info(idss);
+				Ext.Ajax.request({
+					url:'setting/functionAction_delete',
+					params:{'ids': idss },
+				  success: function (response, options) {
+					 
+	                    Ext.MessageBox.alert('成功', '从服务端获取结果: ' + response.responseText);
+	                    gridStore.load();
+	                   
+	                },
+	                failure: function (response, options) {
+	                    Ext.MessageBox.alert('失败', '请求超时或网络故障,错误编号：' + response.status);
+	                }
+				})
+				
+				
+			}
 		}],
 		columns:[{
 			text:'序号',xtype:'rownumberer',width:50
@@ -58,6 +89,7 @@ Ext.onReady(function(){
 		}],
 		renderTo:Ext.getBody()
 	})
+	
 	
 	var window = new Ext.create("Ext.window.Window",{
 		title:"添加窗口",

@@ -13,7 +13,15 @@ public class FunctionsM {
 	private boolean leaf;
 	//名称
 	private String text;
+	//ids id 用  ,连接的字符串
+	private String ids;
 	
+	public String getIds() {
+		return ids;
+	}
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
 	public String getText() {
 		return text;
 	}

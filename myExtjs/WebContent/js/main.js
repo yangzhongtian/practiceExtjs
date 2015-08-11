@@ -26,14 +26,19 @@ Ext.onReady(function(){
 		rootVisible:false,
 		listeners:{
 			'itemclick': function( thi, record){
-				console.info(record);
-		      		var panel = Ext.create("Ext.panel.Panel",{
+				
+		      	var panel = Ext.create("Ext.panel.Panel",{
 		      			title:record.raw.text,
 		      			closable:true,
 		      			html:'<iframe id="amFrame" name="amFrame" src="'+record.raw.url+'" width="100%" height="100%" frameborder="0"></iframe>',
-		      			id:"tab"+record.raw.id
-		      		})
+		      			id:"ta"+record.raw.id
+		      		});
+		      	    var id ="ta"+record.raw.id;
+		      		
+		      		
+		      		
 		      		Ext.getCmp('centerPanel').add(panel);
+		      		Ext.getCmp('centerPanel').setActiveTab(id);
 		      }
 		}
 		
@@ -66,6 +71,7 @@ Ext.onReady(function(){
 			
 			items:[{
 				title:'功能设置',
+				
 				html:'<iframe id="amFrame" name="amFrame" src="pages/setting/function.jsp" width="100%" height="100%" frameborder="0"></iframe>'
 			}]
 		}],

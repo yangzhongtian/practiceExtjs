@@ -6,10 +6,17 @@
 <mapper namespace="setting.function" >
 	<select id="getFun"  resultType="com.test.webview.entity.FunctionsM">
 		select functionId as id ,function_name as name, function_url as url,parentId  from function  where 1=1
-	</select>		
+	</select>	
+	
+	<!-- 添加功能 -->	
 	<insert id="addFun" parameterType="com.test.webview.entity.FunctionsM">
 		insert into function (function_name,function_url,parentId) values(#{name},#{url},#{parentId})
 	</insert>
+	
+	<!-- 删除功能 -->
+	<delete id="delete" parameterType="com.test.webview.entity.FunctionsM">
+		delete from function where functionId  in  (${ids});
+	</delete>
 	
 	<!-- 功能树形 -->
 	<select id="getTree" parameterType="int" resultType="com.test.webview.entity.FunctionsM">

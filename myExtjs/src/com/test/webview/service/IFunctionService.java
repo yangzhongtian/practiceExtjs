@@ -12,4 +12,6 @@ public interface IFunctionService {
 
 	List<FunctionsM> getTree(int parentId) throws Exception;
 
+	boolean delete(String ids);
+
 }

@@ -36,6 +36,16 @@ public class FunctionActionImpl extends BasicDaoSupportImpl implements IFunction
 	private String url;
 	private int parentId;
 	
+	private String ids;
+	
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -98,5 +108,15 @@ public class FunctionActionImpl extends BasicDaoSupportImpl implements IFunction
 		ServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=UTF-8");
 		response.getWriter().print(string);
+	}
+	
+	/*
+	 * 删除功能
+	 */
+	public void delete() throws IOException{
+		boolean flag = functionService.delete(ids);
+		ServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=UTF-8");
+		response.getWriter().print("{success:'success',msg:'hello'}");
 	}
 }
