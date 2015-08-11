@@ -1,0 +1,1 @@
+alert("hello,dynamic load js")
